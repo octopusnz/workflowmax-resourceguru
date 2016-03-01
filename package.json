@@ -1,0 +1,25 @@
+{
+  "name": "workflowmax-resourceguru",
+  "version": "0.1.0",
+  "description": "Connects Workflow Max to Resource Guru",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webantic/workflowmax-resourceguru.git"
+  },
+  "keywords": [
+    "resourceguru",
+    "workflowmax"
+  ],
+  "author": "Webantic",
+  "license": "https://github.com/webantic/workflowmax-resourceguru/blob/master/LICENSE",
+  "bugs": {
+    "url": "https://github.com/webantic/workflowmax-resourceguru/issues"
+  },
+  "engines": {
+    "node": "5.6.0"
+  }
+}
