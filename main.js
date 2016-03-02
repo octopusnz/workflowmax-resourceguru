@@ -47,6 +47,6 @@ app.use(function(err, req, res, next) {
 });
 
 //start server
-app.listen(process.env.PORT);
+http.createServer(app).listen(process.env.PORT || 3000);
 
-console.log('Express server started');
+console.log('Express server started on port' + process.env.PORT);
