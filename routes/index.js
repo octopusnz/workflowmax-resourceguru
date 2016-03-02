@@ -28,7 +28,7 @@ router.get('/resourceguru', function (req, res) {
 router.get('/auth/resourceguru', function (req, res) {
 	// Authorization oauth2 URI
 	var authorization_uri = rgAuth.authCode.authorizeURL({
-	  redirect_uri: 'http://localhost:3000/auth/resourceguru/callback'
+	  redirect_uri: process.env.BASE_URL + '/auth/resourceguru/callback'
 	});
 	
 	res.redirect(authorization_uri);
@@ -40,7 +40,7 @@ router.get('/auth/resourceguru', function (req, res) {
 router.get('/auth/resourceguru/callback', function (req, res) {
 	// Authorization oauth2 URI
 	var authorization_uri = rgAuth.authCode.authorizeURL({
-	  redirect_uri: 'http://localhost:3000/auth/resourceguru/callback'
+	  redirect_uri: process.env.BASE_URL + '/auth/resourceguru/callback'
 	});
 
 	// Get the access token object (the authorization code is given from /auth/resourceguru).
@@ -48,7 +48,7 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 		var token;
 		rgAuth.authCode.getToken({
 		  code: req.query.code,
-		  redirect_uri: 'http://localhost:3000/auth/resourceguru/callback'
+		  redirect_uri: process.env.BASE_URL + '/auth/resourceguru/callback'
 		}, saveToken);
 	} else {
 		res.redirect(authorization_uri);
