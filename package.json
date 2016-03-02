@@ -4,6 +4,7 @@
   "description": "Connects Workflow Max to Resource Guru",
   "main": "main.js",
   "scripts": {
+    "postinstall": "npm install",
     "start": "node --harmony main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
