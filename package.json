@@ -21,5 +21,21 @@
   },
   "engines": {
     "node": "5.6.0"
-  }
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "bootstrap": "^4.0.0-alpha.2",
+    "express": "^4.13.4",
+    "hbs": "^4.0.0",
+    "install": "^0.5.4",
+    "lodash": "^4.6.0",
+    "moment": "^2.11.2",
+    "mongoose": "^4.4.5",
+    "npm": "^3.7.5",
+    "path": "^0.12.7",
+    "request": "^2.69.0",
+    "simple-oauth2": "^0.5.1",
+    "xml2js": "^0.4.16"
+  },
+  "devDependencies": {}
 }
