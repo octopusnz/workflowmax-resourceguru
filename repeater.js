@@ -131,7 +131,7 @@ module.exports = setInterval(function(){
 	  		//Fetch Resource Guru Projects
 	  		fetchRgProjects(doc.resourceGuru.subdomain, doc.resourceGuru.token, function(projects){
 
-	  			if (projects.length){
+	  			if (projects && projects.length){
 	  				// Fetch Resource Guru Users (Resources)
 	  				fetchRgUsers(doc.resourceGuru.subdomain, doc.resourceGuru.token, function(users){
 
