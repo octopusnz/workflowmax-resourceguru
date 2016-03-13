@@ -1,3 +1,5 @@
+![Dependencies](https://david-dm.org/webantic/workflowmax-resourceguru.svg)
+
 workflowmax-resourceguru
 =========
 
