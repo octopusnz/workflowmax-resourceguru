@@ -127,7 +127,7 @@ module.exports = setInterval(function(){
 	  //Fetch WorkFlow Max Jobs	
 	  fetchWfmJobs(doc.workflowmax.apiKey, doc.workflowmax.accountKey, function(jobs){
 
-	  	if (jobs.length) {
+	  	if (jobs && jobs.length) {
 	  		//Fetch Resource Guru Projects
 	  		fetchRgProjects(doc.resourceGuru.subdomain, doc.resourceGuru.token, function(projects){
 
@@ -135,7 +135,7 @@ module.exports = setInterval(function(){
 	  				// Fetch Resource Guru Users (Resources)
 	  				fetchRgUsers(doc.resourceGuru.subdomain, doc.resourceGuru.token, function(users){
 
-	  					if (users.length){
+	  					if (users && users.length){
 	  						//iterate over each WFM job
 					  		jobs.forEach(function(job, i){
 					  			job = job.Job[0];
