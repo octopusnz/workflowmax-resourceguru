@@ -71,7 +71,7 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 	      		var multipleAccounts = false;
 	      		if (data.length > 1) {
 	      			multipleAccounts = true;
-	      		} else {
+	      		} else if (data){
 
 		      		AccountPair.findOneAndUpdate(
 			      		{"resourceGuru.subdomain": data[0].subdomain},
