@@ -38,6 +38,7 @@ router.get('/auth/resourceguru', function (req, res) {
 // Resource Guru Callback Page //
 /////////////////////////////////
 router.get('/auth/resourceguru/callback', function (req, res) {
+	console.log("callback received");
 	// Authorization oauth2 URI
 	var authorization_uri = rgAuth.authCode.authorizeURL({
 	  redirect_uri: process.env.BASE_URL + '/auth/resourceguru/callback'
@@ -62,6 +63,10 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 	  } else {
 		  token = rgAuth.accessToken.create(result);
 
+		  console.log("=====================================================");
+		  console.log(token.token.access_token);
+		  console.log("=====================================================");
+
 		  rgAuth.api('GET', '/v1/accounts', {
 	        access_token: token.token.access_token
 	      }, function (err, data) {
@@ -72,6 +77,10 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 	      		if (data.length > 1) {
 	      			multipleAccounts = true;
 	      		} else if (data){
+	      			console.log("------------------------------------------------");
+	      			console.log(err);
+	      			console.log(data);
+	      			console.log("------------------------------------------------");
 
 		      		AccountPair.findOneAndUpdate(
 			      		{"resourceGuru.subdomain": data[0].subdomain},
