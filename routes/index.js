@@ -57,6 +57,7 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 
 	// Save the access token
 	function saveToken(error, result) {
+	  console.log("saving token");
 	  if (error) { 
 	  	console.log('Access Token Error', error.message); 
 	  	res.redirect(authorization_uri);
