@@ -43,7 +43,9 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 	var authorization_uri = rgAuth.authCode.authorizeURL({
 	  redirect_uri: process.env.BASE_URL + '/auth/resourceguru/callback'
 	});
-
+	console.log("*******************************");
+	console.log(req.query);
+	console.log("*******************************");
 	// Get the access token object (the authorization code is given from /auth/resourceguru).
 	if (req.query.code) {	
 		var token;
@@ -57,7 +59,6 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 
 	// Save the access token
 	function saveToken(error, result) {
-	  console.log("saving token");
 	  if (error) { 
 	  	console.log('Access Token Error', error.message); 
 	  	res.redirect(authorization_uri);
@@ -74,10 +75,14 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 	      	if (err) { 
 	      		console.log('Error getting data', err.message); 
 	      	} else {
-	      		var multipleAccounts = false;
 	      		if (data.length > 1) {
-	      			multipleAccounts = true;
-	      		} else if (data){
+	      			res.render("resourceguruauth", {
+						token: JSON.stringify(token),
+						multipleAccounts: true,
+						accounts: data,
+						code: req.query.code
+					});
+	      		} else {
 	      			console.log("------------------------------------------------");
 	      			console.log(err);
 	      			console.log(data);
@@ -97,8 +102,7 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 			      		function(){
 			      			res.render("resourceguruauth", {
 								token: JSON.stringify(token),
-								multipleAccounts: multipleAccounts,
-								accounts: multipleAccounts ? data : data[0]
+								accounts: data
 							});
 			      		}
 		      		);	
@@ -109,6 +113,40 @@ router.get('/auth/resourceguru/callback', function (req, res) {
 
 	  }
 	};
+});
+
+
+/////////////////////////////////////////////
+// Resource Guru multiple accounts handler //
+/////////////////////////////////////////////
+router.post('/auth/resourceguru/multiple', function (req, res) {
+	console.log(req.body.accounts);
+	console.log(req.body.index);
+	console.log(req.body.token);
+
+	if (req.body.accounts && req.body.index && req.body.token) {
+		var accounts = JSON.parse(req.body.accounts);
+		var token = JSON.parse(req.body.token);
+
+		AccountPair.findOneAndUpdate(
+      		{"resourceGuru.subdomain": accounts[req.body.index].subdomain},
+      		{
+      			"resourceGuru.name": accounts[req.body.index].name, 
+      			"resourceGuru.subdomain": accounts[req.body.index].subdomain, 
+      			"resourceGuru.url": accounts[req.body.index].url,
+      			"resourceGuru.token": token.token
+      		},
+      		{
+      			upsert: true
+      		},
+      		function(){
+      			res.render("resourcegurumultiple", {
+					name: accounts[req.body.index].name,
+					subdomain: accounts[req.body.index].subdomain
+				});
+      		}
+  		);	
+	}
 });
 
 //////////////////////////////

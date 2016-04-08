@@ -16,6 +16,7 @@ var AccountPair = mongoose.model("AccountPair", {
 		subdomain: {type: String},
 		name: {type: String},
 		url: {type: String},
+		index: {type: Number},
 		token: {
 			"access_token": {type: String},
 			"token_type": {type: String},

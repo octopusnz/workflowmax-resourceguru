@@ -30,6 +30,12 @@
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
       }
+    },
+    //resource guru callback page
+    'resourceGuruCallback': {
+        init: function(){
+          
+        }
     }
   };
 

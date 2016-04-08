@@ -6,7 +6,8 @@ var express = require('express'),
     path = require("path"),
     routes = require('./routes/index'),
     schedule = require("./repeater"),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    hbs = require('hbs');
 
 //////////////////////
 // Express Settings //
@@ -16,6 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 app.use(express.static(__dirname + '/public'));
+
+hbs.registerHelper('toJSON', function(object) {
+  return JSON.stringify(object);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

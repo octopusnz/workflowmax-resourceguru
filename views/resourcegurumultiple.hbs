@@ -33,22 +33,11 @@
           </div> -->
 
           <div class="inner cover">
-            {{#if multipleAccounts}}
-              <h1>Looks like you're associated with multiple accounts. Please select the one you wish to use below.</h1>
-              <form action="/auth/resourceguru/multiple" method="POST">
-                <input type="hidden" name="accounts" value="{{toJSON accounts}}">
-                <input type="hidden" name="token" value="{{token}}">
-                {{#each accounts}}
-                  <button name="index" class="btn btn-lg btn-secondary chooseAccount" type="submit" value="{{@index}}">{{name}}</button>
-                {{/each}}
-              </form>
-            {{else}}
-              <h1 class="cover-heading">Successfully connected with the <strong>{{accounts.name}}</strong> account.</h1>
+              <h1 class="cover-heading">Successfully connected with the <strong>{{name}}</strong></h1>
               <form action="/workflowmax" method="POST">
-                <input type="hidden" value="{{accounts.subdomain}}" name="subdomain">
+                <input type="hidden" value="{{subdomain}}" name="subdomain">
                 <input type="submit" class="btn btn-lg btn-secondary" value="Next Step">
               </form>
-            {{/if}}
           </div>
 
           <div class="mastfoot">
