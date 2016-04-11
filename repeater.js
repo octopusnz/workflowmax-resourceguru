@@ -122,7 +122,7 @@ function taskNotCreatedInRg(subdomain, token, userId, taskId, callback){
 // export 
 module.exports = setInterval(function(){
 	var stream = AccountPair.find().stream();
-
+	console.log("running");
 	stream.on('data', function (doc) {
 	  //Fetch WorkFlow Max Jobs	
 	  fetchWfmJobs(doc.workflowmax.apiKey, doc.workflowmax.accountKey, function(jobs){
