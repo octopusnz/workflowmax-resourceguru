@@ -129,7 +129,7 @@ module.exports = setInterval(function(){
 	  fetchWfmJobs(doc.workflowmax.apiKey, doc.workflowmax.accountKey, function(jobs){
 
 	  	console.log("jobs:");
-	  	console.log(jobs);
+	  	if (jobs) console.log(jobs.length);
 	  	if (jobs && jobs.length) {
 	  		//Fetch Resource Guru Projects
 	  		fetchRgProjects(doc.resourceGuru.subdomain, doc.resourceGuru.token, function(projects){
