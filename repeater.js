@@ -138,9 +138,11 @@ module.exports = setInterval(function(){
 	  					if (users && users.length){
 	  						//iterate over each WFM job
 					  		jobs.forEach(function(job, i){
+					  			console.log();
 					  			job = job.Job[0];
 								var matchingProject = matchJobProjectNames(job, projects);
 								if (matchingProject){
+									console.log("running for wfm job: " + job.Name[0]);
 									job.Tasks[0].Task.forEach(function(task){
 										var userIds = getRgAssignees(task.Assigned, users);
 										if (userIds && userIds.length) {
