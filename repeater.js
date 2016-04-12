@@ -128,20 +128,26 @@ module.exports = setInterval(function(){
   	console.log("starting sync: " + doc.resourceGuru.subdomain);
 	  fetchWfmJobs(doc.workflowmax.apiKey, doc.workflowmax.accountKey, function(jobs){
 
+	  	console.log("jobs:");
+	  	console.log(jobs);
 	  	if (jobs && jobs.length) {
 	  		//Fetch Resource Guru Projects
 	  		fetchRgProjects(doc.resourceGuru.subdomain, doc.resourceGuru.token, function(projects){
-
+	  			console.log("projects:");
+	  			console.log(projects);
 	  			if (projects && projects.length){
 	  				// Fetch Resource Guru Users (Resources)
 	  				fetchRgUsers(doc.resourceGuru.subdomain, doc.resourceGuru.token, function(users){
-
+	  					console.log("users");
+	  					console.log(users);
 	  					if (users && users.length){
 	  						//iterate over each WFM job
 					  		jobs.forEach(function(job, i){
-					  			console.log();
 					  			job = job.Job[0];
 								var matchingProject = matchJobProjectNames(job, projects);
+								console.log("job, projects:");
+								console.log(job);
+								console.log(projects);
 								if (matchingProject){
 									console.log("running for wfm job: " + job.Name[0]);
 									job.Tasks[0].Task.forEach(function(task){
