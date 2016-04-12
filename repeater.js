@@ -125,6 +125,7 @@ module.exports = setInterval(function(){
 	console.log("running");
 	stream.on('data', function (doc) {
 	  //Fetch WorkFlow Max Jobs	
+  	console.log("starting sync: " + doc.resourceGuru.subdomain);
 	  fetchWfmJobs(doc.workflowmax.apiKey, doc.workflowmax.accountKey, function(jobs){
 
 	  	if (jobs && jobs.length) {
