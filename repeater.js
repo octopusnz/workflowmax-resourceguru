@@ -149,13 +149,18 @@ module.exports = setInterval(function(){
 								console.log(job);
 								console.log(projects);
 								if (matchingProject){
-									console.log("running for wfm job: " + job.Name[0]);
+									console.log("running for wfm job: " + job.Name[0] + " for client: " + doc.resourceGuru.subdomain);
 									job.Tasks[0].Task.forEach(function(task){
+										console.log("task:");
+										console.log(task);
 										var userIds = getRgAssignees(task.Assigned, users);
 										if (userIds && userIds.length) {
 											userIds.forEach(function(userId){
+												console.log("assigned to:");
+												console.log(userId);
 												taskNotCreatedInRg(doc.resourceGuru.subdomain, doc.resourceGuru.token, userId, task.ID, function(notCreated){
 													if (notCreated){
+														console.log("CREATING TASK");
 														if ( (task.EstimatedMinutes[0] / 60) > 8 ) {
 															var minutes =  8 * 60,
 																startDate = moment(new Date()).format("YYYY-MM-DD"),
